@@ -5,7 +5,8 @@ https://www.youtube.com/watch?v=75nOPZ888sc&list=PLBXuLgInP-5n2fvfXHU9mHVuWBgAKp
 n = 6
 cnt = 0
 def graph(node, last):
-    print(f'{node} 노드에 진입')
+    print(f'{node} 명 남음 (node)')
+    
     if node == 0 :
         global cnt
         cnt += 1   
@@ -19,4 +20,37 @@ def graph(node, last):
 
 print(graph(n,0))
 
-
+'''
+6 명 남음 (node)
+2 명 앉음
+4 명 남음 (node)
+2 명 앉음
+2 명 남음 (node)
+2 명 앉음
+0 명 남음 (node)
+0 에서 리턴
+2 에서 리턴
+3 명 앉음
+1 명 남음 (node)
+1 에서 리턴
+4 명 앉음
+0 명 남음 (node)
+0 에서 리턴
+4 에서 리턴
+3 명 앉음
+3 명 남음 (node)
+3 명 앉음
+0 명 남음 (node)
+0 에서 리턴
+3 에서 리턴
+4 명 앉음
+2 명 남음 (node)
+2 에서 리턴
+5 명 앉음
+1 명 남음 (node)
+1 에서 리턴
+6 명 앉음
+0 명 남음 (node)
+0 에서 리턴
+6 에서 리턴
+'''
