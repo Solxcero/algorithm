@@ -12,9 +12,10 @@ def graph(node, last):
         cnt += 1   
     
     for i in range(max(2,last), min(node,10)+1):
-        print(f'{i} 명 앉음')        
+        print(f'{i} 명 앉음')     
+        print(f'\ngraph({node-i},{i}) 실행')   
         graph(node-i,i)
-    print(f'{node} 에서 리턴')
+    print(f'{node} 에서 리턴\n')
     
     return cnt
 
