@@ -19,7 +19,7 @@ while e != N : # 종료 인덱스가 N 자기 자신이 되기 전까지 수행
         #print(list(range(s,e+1)))
         sum -= s 
         s+=1
-    else:
+    else: #elif sum < N : 
         #print(list(range(s,e+1)))
         e += 1
         sum += e
