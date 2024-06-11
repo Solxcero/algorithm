@@ -1,47 +1,40 @@
 # url : https://school.programmers.co.kr/learn/courses/30/lessons/42583?language=python3
+from collections import deque
 def solution(bridge_length, weight, truck_weights):
-    from collections import deque
-    # truck_weights.insert(0,truck)
-    on_bridge = deque([0]*bridge_length)
-    timepast = 0
-    weight_sum = 0
-    
-    while len(truck_weights) != 0:
-        weight_sum += truck_weights[0]
-        print(f'truck : {truck_weights[0]} , weight : {weight_sum}')
+    elapsed_time = 0 # 경과시간
+    bridge = deque([0] * bridge_length)  # 다리 위
+    bridge_weight = 0  # 다리 위 무게 
+    truck_weights = deque(truck_weights)  # 큐 자료형으로 바꿔주기
+
+    while truck_weights or bridge_weight > 0:
+        elapsed_time += 1
         
-        if weight_sum <= weight:
-            on_bridge[0] = truck_weights[0]
-            print(f'bridge : {on_bridge}')
-            timepast += 1
-            del truck_weights[0]
-            on_bridge.rotate()
-            timepast += 1
-            
+        exiting_truck = bridge.popleft()
+        bridge_weight -= exiting_truck
         
-        else:
-            # weight_sum -= truck_weights[0]
-            while weight_sum > weight:
-                if on_bridge[-1] == 0:
-                    on_bridge.rotate()
-                    timepast += 1
-                    on_bridge[0] = truck_weights[0]
-                    print(f'bridge : {on_bridge}')
-                        
-                else:
-                    weight_sum -= on_bridge[-1]
-                    on_bridge[-1] = 0
-                    on_bridge.rotate
-                    timepast += 1
-                    on_bridge[0] = truck_weights[0]
-                    print(f'bridge : {on_bridge}')
+        if truck_weights:
+            # 다음 트럭이 다리에 올라갈 수 있는지 확인
+            if bridge_weight + truck_weights[0] <= weight:
+                # 트럭을 다리 위에 올린다.
+                entering_truck = truck_weights.popleft()
+                bridge.append(entering_truck)
+                bridge_weight += entering_truck
+            else:
+                # 트럭이 올라갈 수 없으면 0을 넣어 공간 유지
+                bridge.append(0)
+        print(f'bridge: {bridge}')
+        print(f'Elapsed Time : {elapsed_time}')
+
+    return elapsed_time
+
                     
     
                 
         
         
     
-    return timepast
 
 
-solution(2,10,[7,4,5,6])
+print(solution(2,10,[7,4,5,6]))
+# print(solution(100,100,[10]))
+# print(solution(100, 100, [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]))
