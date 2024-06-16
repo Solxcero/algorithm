@@ -31,10 +31,46 @@ def solution(bridge_length, weight, truck_weights):
     
                 
         
-        
     
-
-
 print(solution(2,10,[7,4,5,6]))
 # print(solution(100,100,[10]))
 # print(solution(100, 100, [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]))
+
+
+## 다른 풀이
+'''
+from collections import deque
+
+def solution(bridge_length, weight, truck_weights):
+    answer = 0
+    count = 0
+    Time = 0
+    Truck_weight = 0
+    truck_move = deque()
+
+    while True:       
+        print(f'truck : {truck_weights[count]}')
+        # 트럭 다리 올라가는 조건
+        if count < len(truck_weights) and weight >= Truck_weight + truck_weights[count]:
+            truck_move.append((truck_weights[count], bridge_length + 1 + Time)) # 튜플로 사용 
+            Truck_weight += truck_weights[count]
+            print(f'1 : {truck_move}')
+            count += 1
+
+        # 트럭 다리 다 올라옴
+        if count >= len(truck_weights):
+            print(f'2 : {truck_move}')
+            answer = truck_move[-1][1]
+            break
+
+        # 못올라옴
+        else:
+            Time += 1
+            if truck_move and truck_move[0][1] == Time + 1:
+                Truck_weight -= truck_move[0][0]
+                truck_move.popleft()
+                print(f'3 : {truck_move}')
+        print()
+    
+    return answer
+'''
