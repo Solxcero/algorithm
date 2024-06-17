@@ -1,32 +1,42 @@
 # url : https://school.programmers.co.kr/learn/courses/30/lessons/42583?language=python3
+
 from collections import deque
+
 def solution(bridge_length, weight, truck_weights):
-    elapsed_time = 0 # 경과시간
+    times = 0 # 경과시간
     bridge = deque([0] * bridge_length)  # 다리 위
+    
     bridge_weight = 0  # 다리 위 무게 
     truck_weights = deque(truck_weights)  # 큐 자료형으로 바꿔주기
 
-    while truck_weights or bridge_weight > 0:
-        elapsed_time += 1
+    while truck_weights or bridge_weight > 0:  # 이 조건 중요.
+        times += 1
         
-        exiting_truck = bridge.popleft()
+        exiting_truck = bridge.popleft() # 트럭여부와 상관없이 매 초마다 실행하게 함
         bridge_weight -= exiting_truck
         
         if truck_weights:
             # 다음 트럭이 다리에 올라갈 수 있는지 확인
+            print(f'올라올 트럭 : {truck_weights[0]} , 무게합 : {bridge_weight + truck_weights[0]}')
+
             if bridge_weight + truck_weights[0] <= weight:
                 # 트럭을 다리 위에 올린다.
                 entering_truck = truck_weights.popleft()
                 bridge.append(entering_truck)
                 bridge_weight += entering_truck
+
             else:
                 # 트럭이 올라갈 수 없으면 0을 넣어 공간 유지
                 bridge.append(0)
-        print(f'bridge: {bridge}')
-        print(f'Elapsed Time : {elapsed_time}')
+        
+        else:
+            print('------------트럭 다 올라옴!!!--------------')
+                
+        print(f'다리 탈출 트럭: {exiting_truck}')
+        print(f'다리 현황: {bridge}')
+        print(f'경과시간 : {times}\n')
 
-    return elapsed_time
-
+    return times     
                     
     
                 
