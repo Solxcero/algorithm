@@ -10,12 +10,15 @@ N, M = map(int, input().split())
 maze = [list(map(int, input().strip())) for _ in range(N)]
 
 # 방향 설정 (상, 하, 좌, 우)
-directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]  # 좌, 우, 상, 하 순으로 변경
 
 def bfs(x, y):
     # 덱 초기화 및 시작 지점 방문 처리
     dq = deque([(x, y)])
-    maze[x][y] = 2  # 시작 위치를 2로 설정 (방문 여부와 경로 길이를 동시에 저장)
+    maze[y][x] = 2  # 시작 위치를 2로 설정 (방문 여부와 경로 길이를 동시에 저장)
+    for m in maze:
+        print(m)
+    print()
 
     while dq:
         current_x, current_y = dq.popleft()
@@ -24,15 +27,20 @@ def bfs(x, y):
             next_x, next_y = current_x + dx, current_y + dy
 
             # 유효한 위치인지 확인하고, 방문하지 않은 길이라면
-            if 0 <= next_x < N and 0 <= next_y < M and maze[next_x][next_y] == 1:
-                maze[next_x][next_y] = maze[current_x][current_y] + 1
+            if 0 <= next_x < M and 0 <= next_y < N and maze[next_y][next_x] == 1:
+                maze[next_y][next_x] = maze[current_y][current_x] + 1
                 dq.append((next_x, next_y))
+                print(f'dq : {dq}')
 
+                for m in maze:
+                    print(m)
+                print()
     # 도착 지점의 값 반환 (출발 지점을 2로 시작했으므로 2를 빼줌)
     return maze[N-1][M-1] - 1
 
 # 결과 출력
 print(bfs(0, 0))
+
 
 
 # import sys 
