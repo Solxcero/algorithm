@@ -9,8 +9,8 @@ N, M = map(int, input().split())
 # 미로 초기화
 maze = [list(map(int, input().strip())) for _ in range(N)]
 
-# 방향 설정 (상, 하, 좌, 우)
-directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]  # 좌, 우, 상, 하 순으로 변경
+# 방향 설정 
+directions = [(0, -1), (0, 1), (-1, 0), (1, 0)] 
 
 def bfs(x, y):
     # 덱 초기화 및 시작 지점 방문 처리
@@ -44,6 +44,13 @@ print(bfs(0, 0))
 
 
 
+'''
+4 6
+101111
+101010
+101011
+111011
+'''
 # import sys 
 # from collections import deque
 
@@ -85,11 +92,3 @@ print(bfs(0, 0))
 # print(bfs(0, 0))
 # for m in maze:
 #     print(m)
-
-'''
-4 6
-101111
-101010
-101011
-111011
-'''
