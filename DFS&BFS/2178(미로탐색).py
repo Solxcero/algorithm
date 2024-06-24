@@ -22,6 +22,7 @@ def bfs(x, y):
 
     while dq:
         current_x, current_y = dq.popleft()
+        print(f'pop_x : {current_x}, pop_y : {current_y}')
 
         for dx, dy in directions:
             next_x, next_y = current_x + dx, current_y + dy
