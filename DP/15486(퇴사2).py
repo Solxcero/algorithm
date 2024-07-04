@@ -4,12 +4,12 @@ input = sys.stdin.readline
 N = int(input())
 dp = [0]*(N+1)
 max_income = 0 
-days = []
+# days = []
 
 for i in range(N):
     t, p = map(int,input().split())
     if i + t <= N:
-        days.append((t, p))
+        # days.append((t, p))
         dp[i+t] = max(dp[i+t], dp[i]+p)
     dp[i + 1] = max(dp[i + 1], dp[i]) # 현재 날까지의 최대 수익 다음날에 적용
     print(dp)
