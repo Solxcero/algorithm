@@ -2,17 +2,24 @@ import sys
 
 input = sys.stdin.readline
 
-N, K  = map(int,input().split())
+N, K = map(int, input().split())
 
-dp = [0] * (K+1)
+# DP 테이블 초기화
+dp = [0] * (K + 1)
+
+# 각 물건을 순차적으로 고려
 for i in range(N):
+    w, v = map(int, input().split())
+    # 임시 배열 생성
+    new_dp = dp[:]
+    for j in range(w, K + 1):
+        new_dp[j] = max(dp[j], dp[j - w] + v)
+    dp = new_dp
 
-    w, v = map(int,input().split())
-    for j in range(K,w-1,-1):
-        print(i,j)
-        dp[j] = max(dp[j], dp[j-w]+v)
-        print(dp)
+# 최대 가치 출력
 print(dp[K])
+
+
     
     
 
@@ -26,28 +33,20 @@ print(dp[K])
 > 14
 '''
 
+
 # import sys
 
 # input = sys.stdin.readline
 
-# N, K = map(int, input().split())
+# N, K  = map(int,input().split())
 
-# items = []
-# for _ in range(N):
-#     w, v = map(int, input().split())
-#     items.append((w, v))
+# dp = [0] * (K+1)
+# for i in range(N):
 
-# # DP 테이블 초기화
-# dp = [[0] * (K + 1) for _ in range(N + 1)]
+#     w, v = map(int,input().split())
+#     for j in range(K,w-1,-1):
+#         print(i,j)
+#         dp[j] = max(dp[j], dp[j-w]+v)
+#         print(dp)
+# print(dp[K])
 
-# # DP 테이블 갱신
-# for i in range(1, N + 1):
-#     weight, value = items[i-1]
-#     for w in range(K + 1):
-#         if w >= weight:
-#             dp[i][w] = max(dp[i-1][w], dp[i-1][w - weight] + value)
-#         else:
-#             dp[i][w] = dp[i-1][w]
-
-# # 최대 가치 출력
-# print(dp[N][K])
