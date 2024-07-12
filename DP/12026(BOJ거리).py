@@ -2,7 +2,7 @@ import sys
 
 input = sys.stdin.readline
 
-N = int(input())
+N = int(input())  # 최대 1000
 blocks = str(input().strip())
 
 jump_order = {'B':'O','O':'J','J':'B'}
@@ -13,12 +13,14 @@ dp = [max_energy] * N
 dp[0] = 0  # 처음 위치에서 에너지 0 -> 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값
 
 for i in range(N):
-    # if dp[i] == max_energy:   # 조건문 오버헤드 발생 가능성
+    print(f'현재위치: {blocks[:i]} "{blocks[i]}" {blocks[i+1:]}')
+    # if dp[i] == max_energy:  
     #     continue  
     for j in range(i+1,N):
         if blocks[j] == jump_order[blocks[i]]:
             dp[j] = min(dp[j],(j-i)*(j-i)+dp[i])
-            # print(dp)
+            print(f'{j}번 업데이트 {dp}')
+    print()
 
 print(dp[-1] if dp[-1] != max_energy else -1)
 
