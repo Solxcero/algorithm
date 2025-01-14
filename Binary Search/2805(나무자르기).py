@@ -13,18 +13,26 @@ tree = list(map(int,input().split()))
 left , right = 0, max(tree)
 while left <= right:
     mid = (left + right)// 2
-    
+    print(left, mid, right)
+
     total_cut = 0
     for t in tree:
         if t > mid:
             total_cut += t - mid
+            
     
     # 높이 더 내려야함
+    print(total_cut)
     if total_cut < M :
         right = mid -1
-        
     else:
         left = mid + 1
         
 print(right)
-    
+
+'''    
+4 7
+20 15 10 17
+
+15
+'''
