@@ -5,9 +5,8 @@ from collections import deque
 def solution(bridge_length, weight, truck_weights):
     times = 0 # 경과시간
     bridge = deque([0] * bridge_length)  # 다리 위
-    
     bridge_weight = 0  # 다리 위 무게 
-    truck_weights = deque(truck_weights)  # 큐 자료형으로 바꿔주기
+    truck_weights = deque(truck_weights) 
 
     while truck_weights or bridge_weight > 0:  # 이 조건 중요.
         times += 1
@@ -32,7 +31,7 @@ def solution(bridge_length, weight, truck_weights):
         else:
             print('------------트럭 다 올라옴!!!--------------')
                 
-        print(f'다리 탈출 트럭: {exiting_truck}')
+        print(f'다리 탈출 트럭: {exiting_truck if exiting_truck != 0 else "-"}')
         print(f'다리 현황: {bridge}')
         print(f'경과시간 : {times}\n')
 
@@ -41,8 +40,8 @@ def solution(bridge_length, weight, truck_weights):
     
                 
         
-    
-print(solution(2,10,[7,4,5,6]))
+# (bridge_length, weight, truck_weights)    
+print(solution(2,10,[7,4,5,6])) 
 # print(solution(100,100,[10]))
 # print(solution(100, 100, [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]))
 
