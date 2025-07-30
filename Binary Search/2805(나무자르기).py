@@ -36,3 +36,49 @@ print(right)
 
 15
 '''
+
+# 풀이 2: 재귀
+# def get_cut_wood(height, tree):
+#     total_cut = 0
+#     for t in tree:
+#         if t > height:
+#             total_cut += t - height
+#     return total_cut
+
+# def find_max_height(left, right, tree, M):
+#     if left > right:
+#         return right
+    
+#     mid = (left + right) // 2
+#     total_cut = get_cut_wood(mid, tree)
+    
+#     if total_cut < M:
+#         return find_max_height(left, mid - 1, tree, M)
+#     else:
+#         return find_max_height(mid + 1, right, tree, M)
+
+# N, M = map(int, input().split())
+# tree = list(map(int, input().split()))
+
+
+# 풀이 3: Counter
+# import sys
+# from collections import Counter
+
+# input = sys.stdin.readline
+
+# N, M = map(int, input().split())
+# heights = Counter(map(int, input().split()))
+
+# start, end = 1, max(heights)
+# while start <= end:
+#     mid = (start + end) // 2
+
+#     cutted = sum([(h-mid) * i for h, i in heights.items() if h > mid])
+
+#     if cutted < M:
+#         end = mid - 1
+#     else:
+#         start = mid + 1
+
+# print(end)
